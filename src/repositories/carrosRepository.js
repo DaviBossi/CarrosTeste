@@ -51,7 +51,7 @@ class CarrosRepository {
 
             const query = "DELETE FROM CARROS WHERE ID = $1 RETURNING *";
             const result = await client.query(query,[id]);
-            return (await result).rows[0];
+            return result.rows[0];
         } catch (error) {
             console.error("Erro ao deletar algum carro",error);
             throw error;
