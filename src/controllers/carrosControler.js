@@ -10,12 +10,12 @@ class CarrosController {
         }
     }
     static async addCar(req,res) {
-        const {marca,modelo,ano} = req.body;
+        const {nome,marca,ano} = req.body;
         try {
-            if(!marca || !modelo || !ano){
+            if(!marca || !nome || !ano){
                 return res.status(400).json({error: "Todos os campos sao obrigatorios"})
             }
-            const novoCarro = await CarrosService.addCar(marca,modelo,ano);
+            const novoCarro = await CarrosService.addCar(nome,marca,ano);
             res.status(201).json(novoCarro);
         }catch(error){
             res.status(500).json({error: "Erro ao adicionar um novo carro"});

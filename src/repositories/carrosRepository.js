@@ -10,13 +10,13 @@ class CarrosRepository {
         return result.rows;
     }
 
-    static async addCar(marca,modelo,ano){
+    static async addCar(nome,marca,ano){
         const client = new Client(config.urlConnection);
 
         try {
             await client.connect();
-            const query = "INSERT INTO CARROS (marca,modelo,ano) VALUES ($1, $2, $3) RETURNING *"
-            const values = [marca,modelo,ano];
+            const query = "INSERT INTO CARROS (nome,marca,ano) VALUES ($1, $2, $3) RETURNING *"
+            const values = [nome,marca,ano];
             const result = await client.query(query,values);
             return result.rows[0];
         } catch (error){
