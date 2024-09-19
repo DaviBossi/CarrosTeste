@@ -33,7 +33,7 @@ class CarrosController {
             res.status(500).json({error: "Erro ao atualizar um carro"});
         }
     }
-    static async deleteCar(id){
+    static async deleteCar(req,res){
         const id = req.body;
 
         try{
