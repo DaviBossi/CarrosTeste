@@ -7,7 +7,7 @@ router.get("/", CarrosController.getAll);
 
 router.post("/",CarrosController.addCar);
 
-router.put("/",CarrosController.updateCar);
+router.put("/:id",CarrosController.updateCar);
 
 router.delete("/:id",CarrosController.deleteCar);
 
