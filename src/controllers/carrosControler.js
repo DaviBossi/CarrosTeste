@@ -28,7 +28,11 @@ class CarrosController {
                 return res.status(400).json({error: "Usuario nao inseriu o ID"})
             }
             const updatedCar = await CarrosService.updateCar(id,nome,marca,ano);
-            res.status(201).json(updatedCar);
+            if(updatedCar){
+                res.status(201).json(updatedCar);
+            } else {
+                res.status(404).json({error: "Carro nao encontrado"});
+            }
         } catch(error){
             res.status(500).json({error: "Erro ao atualizar um carro"});
         }
