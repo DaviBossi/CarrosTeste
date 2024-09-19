@@ -34,14 +34,18 @@ class CarrosController {
         }
     }
     static async deleteCar(req,res){
-        const id = req.body;
+        const id = req.params.id;
 
         try{
             if(!id){
                 return res.status(400).json({error: "Usuario nao inseriu o ID"})
             }
             const deletedCar = await CarrosService.deleteCar(id);
-            res.status(202).json(deletedCar); 
+            if(deletedCar){
+                res.status(200).json(deletedCar); 
+            } else {
+                res.status(404).json({error: "Carro nao encontrado"});
+            }
         } catch (error) {
             res.status(500).json({error: "Erro ao deletar um carro"});
         }
