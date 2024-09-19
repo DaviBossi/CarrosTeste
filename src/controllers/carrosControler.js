@@ -33,6 +33,19 @@ class CarrosController {
             res.status(500).json({error: "Erro ao atualizar um carro"});
         }
     }
+    static async deleteCar(id){
+        const id = req.body;
+
+        try{
+            if(!id){
+                return res.status(400).json({error: "Usuario nao inseriu o ID"})
+            }
+            const deletedCar = await CarrosService.deleteCar(id);
+            res.status(202).json(deletedCar); 
+        } catch (error) {
+            res.status(500).json({error: "Erro ao deletar um carro"});
+        }
+    }
 }
 
 module.exports = CarrosController;

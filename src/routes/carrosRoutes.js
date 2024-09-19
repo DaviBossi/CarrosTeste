@@ -9,4 +9,6 @@ router.post("/",CarrosController.addCar);
 
 router.put("/",CarrosController.updateCar);
 
+router.delete("/",CarrosController.deleteCar);
+
 module.exports = router;

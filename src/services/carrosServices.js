@@ -10,6 +10,9 @@ class CarrosService {
     static async updateCar(id,nome,marca,ano){
         return await CarrosRepository.updateCar(id,nome,marca,ano);
     }
+    static async deleteCar(id){
+        return await CarrosRepository.deleteCar(id);
+    }
 }
 
 module.exports = CarrosService;

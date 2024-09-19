@@ -43,6 +43,23 @@ class CarrosRepository {
             await client.end();
         }
     }
+    static async deleteCar(id){
+        const client = new Client(config.urlConnection);
+
+        try {
+            await client.connect();
+
+            const query = "DELETE FROM CARROS WHERE ID = $1 RETURNING *";
+            const value = id;
+            const result = client.query(query,value);
+            return (await result).rows[0];
+        } catch (error) {
+            console.error("Erro ao deletar algum carro",error);
+            throw error;
+        } finally {
+            client.end();
+        }
+    }
 }
 
 module.exports = CarrosRepository;
