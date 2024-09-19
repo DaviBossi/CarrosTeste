@@ -21,6 +21,18 @@ class CarrosController {
             res.status(500).json({error: "Erro ao adicionar um novo carro"});
         }
     }
+    static async updateCar(req,res){
+        const {id,nome,marca,ano} = req.body;
+        try{
+            if(!id){
+                return res.status(400).json({error: "Usuario nao inseriu o ID"})
+            }
+            const updatedCar = await CarrosService.updateCar(id,nome,marca,ano);
+            res.status(201).json(updatedCar);
+        } catch(error){
+            res.status(500).json({error: "Erro ao atualizar um carro"});
+        }
+    }
 }
 
 module.exports = CarrosController;

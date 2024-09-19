@@ -23,7 +23,24 @@ class CarrosRepository {
             console.error("Erro ao inserir um novo carro",error);
             throw error;
         } finally {
-            client.end();
+           await client.end();
+        }
+    }
+
+    static async updateCar(id,nome,marca,ano){
+        const client = new Client(config.urlConnection);
+
+        try{
+            await client.connect();
+            const query = "UPDATE CARROS SET NOME = $2, MARCA = $3, ANO = $4 WHERE ID = $1 RETURNING *"
+            const values = [id,nome,marca,ano];
+            const result = await client.query(query,values);
+            return result.rows[0];
+        }catch(error){
+            console.error("Erro ao atualizar o carro:",error);
+            throw error;
+        } finally {
+            await client.end();
         }
     }
 }
